@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/icon/favicon.ico" type="icon">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="./styles/darkmode.css">
+    <link rel="stylesheet" href="./styles/responsive.css">
+    <title>To do List - Organize e não perca tempo</title>
+</head>
+
+<body>
+    <header>
+        <h1>To do List</h1><button class="btnModo" id="alteraModo">Alternar Modo</button>
+    </header>
+    <main>
+        <aside>
+            <form onsubmit="">
+                <div class="container">
+                    <div class="form-group">
+                        <label for="title">Título: </label><input id="title" type="text" required maxlength="21">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Descrição: </label><input id="description" type="text" maxlength="63">
+                    </div>
+                    <div class="form-group">
+                        <label for="deadline">Data de vencimento: </label><input id="deadline" type="date">
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Escolha uma opção:</label>
+                        <select id="category" name="opcao">
+                            <option value="trabalho">Trabalho</option>
+                            <option value="pessoal">Pessoal</option>
+                            <option value="estudo">Estudo</option>
+                        </select>
+                    </div>
+
+                    <button id="save" type="submit">Salvar</button>
+                </div>
+
+                <!-- - Filtrar por: Todas/Ativas/Concluídas/Categoria -->
+                <div class="form-group">
+                    <label for="filter">Filtrar por:</label>
+                    <select id="filter" name="filtros">
+                        <option value="todas" selected>Todas as categorias</option>
+                        <option value="trabalho">Trabalho</option>
+                        <option value="pessoal">Pessoal</option>
+                        <option value="estudo">Estudo</option>
+                    </select>
+                </div>
+            </form>
+        </aside>
+
+
+        <div id="tasks">
+        </div>
+    </main>
+    <footer>
+        Desenvolvido por João Vitor Brandão 2025
+    </footer>
+    <script type="module" src="./scripts/index.js"></script>
+</body>
+
+</html>

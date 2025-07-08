@@ -1,0 +1,35 @@
+# PROJETOS PARA PORTFÓLIO - HTML, CSS & JavaScript
+Ordenados por complexidade crescente (⭐ = nível de dificuldade)
+
+----------------------------------------------------------
+## 1. APLICATIVO DE LISTA DE TAREFAS AVANÇADA (⭐☆☆☆)
+Tecnologias: HTML, CSS, JavaScript, localStorage
+
+REGRAS DE NEGÓCIO:
+- Adicionar tarefas com: 
+    título (obrigatório), 
+    descrição, 
+    categoria (Trabalho/Pessoal/Estudo) e 
+    data de vencimento
+
+- Marcar/desmarcar tarefas como concluídas (texto riscado)
+
+- Filtrar por: Todas/Ativas/Concluídas/Categoria
+- Arrastar e soltar para reordenar prioridades
+- Persistência total no localStorage
+- Validações: 
+  - Bloquear tarefas sem título
+  - Impedir datas de vencimento passadas
+- Opcional: Toggle de modo noturno
+
+ESTRUTURA DE PASTAS:
+lista-tarefas/
+├── index.html
+├── styles/
+│   ├── styles.css
+│   └── dark-mode.css
+└── scripts/
+    ├── storage.js
+    ├── drag-drop.js
+    ├── ui.js
+    └── app.js
