@@ -2,8 +2,61 @@ import { getListaTarefas, setListaTarefas } from './storage.js';
 
 let listaTarefas = getListaTarefas();
 const form = document.querySelector('form');
-const tasksContainer = document.getElementById('tasks');
 const categoriaDesejada = document.getElementById('filter');
+const tasksContainer = document.getElementById('tasks');
+
+
+tasksContainer.addEventListener('dragover', (e) => {
+  e.preventDefault();
+  tasksContainer.classList.add('hovered');
+});
+
+tasksContainer.addEventListener('dragleave', () => {
+  tasksContainer.classList.remove('hovered');
+});
+
+tasksContainer.addEventListener('drop', (e) => {
+  e.preventDefault();
+  tasksContainer.classList.remove('hovered');
+
+  const id = e.dataTransfer.getData('text/plain');
+  const tarefaArrastada = document.getElementById(id);
+
+  // Lista de possíveis alvos
+  const elementos = [...tasksContainer.querySelectorAll('.tarefa')].filter(el => el.id !== id);
+
+  let elementoAlvo = null;
+  for (const el of elementos) {
+    const rect = el.getBoundingClientRect();
+
+    // Decide se posiciona antes ou depois do alvo
+    const offsetY = e.clientY - rect.top;
+    const offsetX = e.clientX - rect.left;
+
+    // Se o container for flex row, usa X; se for column, usa Y
+    const isRow = getComputedStyle(tasksContainer).flexDirection.startsWith('row');
+    const metade = isRow ? rect.width / 2 : rect.height / 2;
+    const offset = isRow ? offsetX : offsetY;
+
+    if (offset < metade) {
+      elementoAlvo = el;
+      break;
+    }
+  }
+
+  if (elementoAlvo) {
+    tasksContainer.insertBefore(tarefaArrastada, elementoAlvo);
+  } else {
+    tasksContainer.appendChild(tarefaArrastada);
+  }
+
+  // Atualiza ordem no localStorage
+  const novaOrdem = Array.from(tasksContainer.querySelectorAll('.tarefa')).map(el => el.id);
+  listaTarefas.sort((a, b) => novaOrdem.indexOf(a.id) - novaOrdem.indexOf(b.id));
+  setListaTarefas(listaTarefas);
+});
+
+
 
 export function salvarTarefa() {
   const titulo = document.getElementById('title').value.trim();
@@ -42,8 +95,8 @@ export function filtrar() {
 
 function renderizaTarefa(lista) {
   tasksContainer.innerHTML = lista.map(tarefa => `
-    <div class="tarefa cards">
-      <p class='titulo'> Tarefa:  ${tarefa.titulo}</p>
+    <div class="tarefa cards" draggable="true" id="${tarefa.id}">
+      <p class='titulo' > Tarefa:  ${tarefa.titulo}</p>
       <p class='descricao'> Descrição:  ${tarefa.descricao}</p>
       <p class='data'> Data de vencimento:  ${tarefa.dataVencimento}</p>
       <p class='categoria'> Categoria:  ${tarefa.categoria}</p>
@@ -54,7 +107,15 @@ function renderizaTarefa(lista) {
   document.querySelectorAll('.excluir').forEach(botao => {
     botao.addEventListener('click', excluirTarefa);
   });
+
+  document.querySelectorAll('.tarefa').forEach(tarefa => {
+    tarefa.addEventListener('dragstart', (e) => {
+      e.dataTransfer.setData('text/plain', e.target.id);
+    });
+  });
 }
+
+
 
 function excluirTarefa(e) {
   const confirmacao = window.confirm("Tem certeza que deseja excluir esta tarefa?");

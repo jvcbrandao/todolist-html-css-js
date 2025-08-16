@@ -1,46 +1,27 @@
-# To Do List - Organize e não perca tempo 📝
+# To Do List - Organize e não perca tempo
 
-Um aplicativo web simples e funcional de lista de tarefas, com suporte a **modo escuro**, **filtro por categorias** e **armazenamento local**. Ideal para te ajudar a organizar atividades do dia a dia, estudos, trabalho ou tarefas pessoais.
+Um aplicativo web simples e funcional de lista de tarefas, com suporte a **modo escuro**, **filtro por categorias**, **drag and drop** para reordenar itens e **armazenamento local**.  
+Foi pensado para ajudar na organização de atividades do dia a dia, estudos, trabalho ou tarefas pessoais.
 
-## 🚀 Funcionalidades
+## Funcionalidades
 
-- ✅ Adicionar tarefas com título, descrição, data de vencimento e categoria.
-- 🔍 Filtrar tarefas por categoria: trabalho, pessoal ou estudo.
-- 🗑️ Excluir tarefas da lista.
-- 🌙 Alternar entre modo claro e escuro.
-- 💾 Armazena dados no **LocalStorage**, mantendo suas tarefas salvas mesmo após fechar o navegador.
+- Adicionar tarefas com título, descrição, data de vencimento e categoria  
+- Filtrar tarefas por categoria (exemplo: trabalho, pessoal, estudo)  
+- Excluir tarefas da lista  
+- Reordenar tarefas de forma intuitiva usando drag and drop  
+- Alternar entre modo claro e escuro  
+- Salvar dados no **LocalStorage**, garantindo que as tarefas permaneçam mesmo após fechar o navegador  
 
-## 📁 Estrutura do Projeto
+## Organização do Código
 
-```
-projeto/
-│
-├── assets/
-│   └── icon/
-│       ├── favicon.ico
-│       └── favicon.svg
-│
-├── scripts/
-│   └── scripts.js
-│
-├── styles/
-│   ├── darkmode.css
-│   └── styles.css
-│
-├── index.html
-├── projeto.txt
-└── README.md
-```
+O projeto foi estruturado separando responsabilidades em diferentes arquivos JavaScript e CSS, utilizando **imports** para manter a organização e facilitar a manutenção.
 
-## 💡 Como usar
+## Como usar
 
-1. **Clone ou baixe este repositório.**
-
-2. **Abra o arquivo `index.html` em um navegador.**  
-   > Não é necessário servidor local nem backend.
-
-3. **Use o formulário à esquerda para adicionar novas tarefas.**
-
-4. **Use o seletor para filtrar tarefas por categoria.**
-
-5. **Clique no botão "Alternar Modo" para usar o modo escuro.**
+1. Clone ou baixe este repositório  
+2. Abra o arquivo `index.html` em um navegador  
+   - Não é necessário servidor local ou backend  
+3. Use o formulário para adicionar novas tarefas  
+4. Utilize o seletor para filtrar tarefas por categoria  
+5. Clique no botão de alternância para mudar entre modo claro e escuro  
+6. Arraste e solte tarefas para reorganizá-las conforme desejar
